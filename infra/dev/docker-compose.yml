@@ -1,0 +1,18 @@
+services:
+  postgres:
+    image: postgres:17.5
+    container_name: stockflow-postgres
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+    environment:
+      TZ: 'America/Guayaquil'
+      POSTGRES_USER: stock_user
+      POSTGRES_PASSWORD: toor
+    volumes:
+      - stockflow_postgres_data:/var/lib/postgresql/data
+      - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql:ro
+
+volumes:
+  stockflow_postgres_data:
+    name: stockflow_postgres_data
