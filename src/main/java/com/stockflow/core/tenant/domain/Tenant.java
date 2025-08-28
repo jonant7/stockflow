@@ -23,4 +23,9 @@ public class Tenant extends AbstractStatefulAuditableEntity {
     @Column(name = "slug", nullable = false, unique = true, length = 64)
     private String slug;
 
+    public void update(TenantPutDTO putDTO, String slug){
+        this.name = putDTO.getDisplayName();
+        this.slug = slug;
+    }
+
 }
